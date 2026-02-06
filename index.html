@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>O Código da Atração - Torne-se Irresistível</title>
+    
+    <!-- Importando Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Ícones -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        /* --- RESET & VARIÁVEIS --- */
+        :root {
+            --primary-red: #c8102e; 
+            --dark-text: #1a1a1a;
+            --light-text: #555555;
+            --gold: #f4c430;
+            --bg-white: #ffffff;
+            --bg-blush: #fff5f6;
+            --bg-offwhite: #fcfcfc;
+            --bg-contrast: #f8f9fa;
+            --green-check: #4CAF50;
+            --font-serif: 'Playfair Display', serif;
+            --font-main: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--dark-text);
+            line-height: 1.6;
+            background-color: var(--bg-white);
+            font-weight: 400;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; height: auto; }
+        
+        h2, h3, h4, h5, h6, p, span, li, button, .logo {
+            font-family: var(--font-main);
+        }
+
+        /* --- ANIMAÇÃO DE ONDAS --- */
+        @keyframes wave-motion {
+            0% { transform: translateX(0) scaleY(1); }
+            50% { transform: translateX(-20px) scaleY(1.2); }
+            100% { transform: translateX(0) scaleY(1); }
+        }
+
+        /* --- UTILITÁRIOS --- */
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 2;
+        }
+        .text-center { text-align: center; }
+        
+        /* BOTÃO (Atualizado para funcionar como Link <a>) */
+        .btn-cta {
+            background-color: var(--primary-red);
+            color: white;
+            width: 100%;
+            padding: 16px;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(200, 16, 46, 0.3);
+            font-family: var(--font-main);
+            
+            /* Propriedades para garantir que o link pareça um botão */
+            display: block; 
+            text-align: center;
+            text-decoration: none;
+            line-height: 1.5;
+        }
+        .btn-cta:hover { background-color: #a00d25; color: white; }
+
+        /* --- WAVE DIVIDERS --- */
+        .wave-divider {
+            position: absolute;
+            left: -10%;
+            width: 120%;
+            overflow: hidden;
+            line-height: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .wave-divider svg {
+            display: block;
+            width: 100%;
+            height: 70px;
+            transform-origin: bottom center;
+            animation: wave-motion 6s ease-in-out infinite;
+        }
+        .wave-bottom { bottom: -1px; transform: rotate(180deg); }
+        .wave-top { top: -1px; }
+        
+        .fill-blush { fill: var(--bg-blush); }
+        .fill-contrast { fill: var(--bg-contrast); }
+        .fill-white { fill: #ffffff; }
+        .fill-dark { fill: #111; }
+
+        /* --- TOP BAR --- */
+        .top-bar {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            font-size: 0.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+        }
+        .timer { font-family: monospace; font-size: 0.9rem; }
+
+        /* --- HEADER --- */
+        header {
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,0.98);
+            z-index: 1000;
+            width: 100%;
+        }
+        .nav-links { display: none; gap: 20px; font-size: 0.85rem; text-transform: uppercase; font-weight: 500; }
+        .logo { font-size: 1.4rem; color: var(--primary-red); font-weight: 700; letter-spacing: -0.5px; }
+        .logo span { color: var(--dark-text); font-weight: 400; }
+        .header-icons { display: flex; gap: 15px; font-size: 1.1rem; }
+
+        /* --- HERO SECTION --- */
+        .product-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+            align-items: center;
+            background: radial-gradient(circle at center, #fff 0%, #fafafa 100%);
+        }
+        .product-image-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .book-cover {
+            width: 260px;
+            height: 390px;
+            background: #111;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: 10px 10px 30px rgba(0,0,0,0.25);
+            padding: 20px;
+            border: 1px solid #333;
+        }
+        .book-cover h2 { font-family: var(--font-serif); font-size: 1.6rem; line-height: 1.2; margin-top: 15px; color: #fff; }
+        .book-cover .lips { font-size: 3.5rem; color: var(--primary-red); margin-bottom: 10px; }
+        .book-cover .author { font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; margin-top: auto; color: #888; }
+        
+        .product-details h1 { 
+            font-family: var(--font-serif); 
+            font-size: 2.4rem; 
+            line-height: 1.2; 
+            margin-bottom: 15px; 
+            color: #000; 
+        }
+        .stars { color: var(--gold); margin-bottom: 10px; font-size: 1rem; }
+        
+        .price-container { margin: 20px 0; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .current-price { font-size: 1.8rem; font-weight: 700; color: var(--primary-red); }
+        .old-price { text-decoration: line-through; color: #999; font-size: 1.1rem; }
+        .save-badge { background: var(--primary-red); color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; }
+        
+        .features-check li { margin-bottom: 8px; display: flex; align-items: start; gap: 10px; font-size: 0.9rem; }
+        .features-check i { margin-top: 5px; color: var(--dark-text); font-size: 0.8rem; }
+
+        /* --- 1. PAIN SECTION WRAPPER --- */
+        .pain-section-wrapper {
+            position: relative;
+            background-color: var(--bg-blush);
+            padding: 50px 0;
+            margin-bottom: 60px;
+            width: 100%;
+        }
+        .pain-section {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        .pain-section h2 { 
+            font-size: 2rem; 
+            margin-bottom: 10px; 
+            font-weight: 600; 
+        }
+        .pain-section p { 
+            color: var(--light-text); 
+            margin-bottom: 15px; 
+            font-size: 1rem; 
+        }
+
+        /* --- 2. COMPARISON TABLE --- */
+        .comparison-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+            margin-bottom: 80px;
+        }
+        .comparison-text h2 { font-size: 2rem; margin-bottom: 20px; font-weight: 600; }
+        .comparison-text p { margin-bottom: 20px; color: var(--light-text); font-size: 0.95rem; }
+        
+        .comparison-table {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            width: 100%;
+        }
+        .comp-header {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            background: #fff;
+            font-weight: 700;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .comp-header div { padding: 15px; text-align: center; font-size: 0.85rem; }
+        .comp-header .brand-col { color: var(--dark-text); font-weight: 800; font-size: 0.95rem; }
+        .comp-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            background: #fff;
+            border-bottom: 1px solid #f9f9f9;
+            align-items: center;
+        }
+        .comp-feature {
+            background-color: var(--primary-red);
+            color: white;
+            padding: 12px 15px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+        .comp-check, .comp-cross {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1rem;
+            height: 100%;
+            background: #fff;
+            padding: 10px;
+        }
+        .comp-check { color: var(--green-check); }
+        .comp-cross { color: #ccc; }
+
+        /* --- 3. WARNING SECTION --- */
+        .warning-wrapper {
+            background: #fffbf2;
+            border-left: 4px solid #ffbd00;
+            margin-bottom: 80px;
+            width: 100%;
+        }
+        .warning-section { padding: 40px; }
+        .warning-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 600;
+        }
+        .warning-icon { font-size: 2rem; color: #ffbd00; }
+        .warning-content ul { list-style: disc; padding-left: 20px; margin: 20px 0; }
+        .warning-content li { margin-bottom: 10px; color: var(--light-text); font-size: 0.95rem; }
+
+        /* --- 4. EXPERIENCE SECTION WRAPPER --- */
+        .experience-wrapper {
+            position: relative;
+            background-color: var(--bg-contrast);
+            padding-top: 80px;
+            padding-bottom: 60px;
+            margin-bottom: 60px;
+            width: 100%;
+        }
+        .experience-section {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        .exp-list li { display: flex; gap: 15px; margin-bottom: 25px; align-items: flex-start; }
+        .exp-icon { font-size: 1.2rem; min-width: 25px; margin-top: 2px; }
+        .exp-text strong { display: block; color: var(--dark-text); font-weight: 600; margin-bottom: 5px; }
+        .exp-text { font-size: 0.9rem; color: var(--light-text); }
+
+        .stats-container { display: flex; flex-direction: column; gap: 20px; }
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+        .circle-chart {
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            font-weight: 700; color: var(--primary-red); font-size: 0.9rem;
+            flex-shrink: 0; position: relative;
+        }
+        .c-91 { background: conic-gradient(var(--primary-red) 91%, #ffe5e5 0); }
+        .c-89 { background: conic-gradient(var(--primary-red) 89%, #ffe5e5 0); }
+        .c-95 { background: conic-gradient(var(--primary-red) 95%, #ffe5e5 0); }
+        .circle-inner {
+            width: 48px; height: 48px; background: white; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; position: absolute;
+        }
+        .stat-desc { font-size: 0.85rem; color: var(--light-text); line-height: 1.4; }
+
+        /* --- 5. BEFORE & AFTER --- */
+        .game-section {
+            margin-bottom: 80px;
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 40px;
+            align-items: center;
+        }
+        .game-text h2 { font-size: 2.2rem; margin-bottom: 15px; font-weight: 600; }
+        .game-text p { color: var(--light-text); font-size: 0.95rem; }
+        
+        .ba-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .ba-col { padding: 30px 20px; }
+        .ba-before { background-color: #fff0f0; } 
+        .ba-after { background-color: #e3fcef; } 
+        .ba-header {
+            background-color: var(--primary-red);
+            color: white;
+            padding: 5px 10px; text-transform: uppercase; font-weight: 700; font-size: 0.7rem;
+            display: inline-block; margin-bottom: 20px; border-radius: 3px;
+        }
+        .ba-list div {
+            margin-bottom: 15px; display: flex; justify-content: space-between;
+            align-items: center; font-size: 0.8rem; line-height: 1.4;
+        }
+        .ba-before .ba-list div { text-align: right; flex-direction: row; } 
+        .icon-cross { color: #ff4444; font-size: 0.9rem; margin-left: 8px; }
+        .icon-check { color: #4CAF50; font-size: 0.9rem; margin-left: 8px; }
+
+        /* --- 6. GUARANTEE SECTION --- */
+        .guarantee-section {
+            text-align: center;
+            padding: 50px 20px;
+            background: #fafafa;
+            max-width: 800px;
+            margin: 0 auto 60px auto;
+            border: 1px dashed #ddd;
+            border-radius: 10px;
+        }
+        .guarantee-section h2 { font-size: 1.6rem; margin-bottom: 20px; font-weight: 600; }
+        .guarantee-section p { margin-bottom: 20px; color: var(--light-text); font-size: 0.95rem; }
+
+        /* --- TESTIMONIALS --- */
+        .testimonials-wrapper { background-color: #fff; padding-bottom: 80px; width: 100%; }
+        .reviews-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 50px;
+        }
+        .review-card {
+            background: #fff; padding: 25px 20px; border-radius: 12px; text-align: center; position: relative;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03); border: 1px solid #f9f9f9;
+        }
+        .quote-icon { color: var(--primary-red); font-size: 1.8rem; position: absolute; top: 15px; right: 15px; opacity: 0.15; }
+        .review-title { font-weight: 700; font-size: 0.95rem; margin: 15px 0; }
+        .review-body { font-size: 0.85rem; color: var(--light-text); margin-bottom: 20px; font-style: italic; }
+        .review-author { font-size: 0.75rem; text-transform: uppercase; color: #888; font-weight: 700; letter-spacing: 1px; }
+
+        /* --- FOOTER --- */
+        .footer-wrapper { position: relative; margin-top: 50px; width: 100%; }
+        .footer-wave svg {
+            animation: wave-motion 8s ease-in-out infinite reverse;
+        }
+        footer { 
+            background: #111; color: #fff; padding: 60px 20px 40px 20px; 
+            text-align: center; font-size: 0.8rem; position: relative; z-index: 2;
+        }
+
+        /* --- RESPONSIVIDADE MOBILE --- */
+        @media (min-width: 769px) { .nav-links { display: flex; } }
+
+        @media (max-width: 768px) {
+            .container { padding: 30px 20px; }
+            
+            .product-details h1 { font-size: 1.8rem; line-height: 1.3; } 
+            h2 { font-size: 1.5rem !important; line-height: 1.3; }
+            
+            .product-hero, .comparison-section, .experience-section, .game-section, .reviews-grid {
+                grid-template-columns: 1fr; 
+                gap: 35px;
+            }
+            
+            .product-hero { text-align: center; }
+            .product-image-wrapper { padding: 0; }
+            .book-cover { width: 220px; height: 330px; margin: 0 auto; }
+            .price-container { justify-content: center; }
+            .features-check { display: inline-block; text-align: left; }
+            
+            .comparison-table { 
+                overflow-x: auto; 
+                display: block; 
+                width: 100%; 
+                -webkit-overflow-scrolling: touch;
+            }
+            .comp-header, .comp-row { min-width: 500px; } 
+            
+            .warning-section { padding: 25px 15px; }
+            .warning-title { font-size: 1.4rem; justify-content: center; text-align: center; }
+            
+            .ba-container { grid-template-columns: 1fr; }
+            
+            .reviews-grid { gap: 15px; }
+            
+            p, li { font-size: 0.9rem !important; }
+        }
+
+        @media (max-width: 480px) {
+            .product-details h1 { font-size: 1.6rem; }
+            h2 { font-size: 1.35rem !important; }
+            .top-bar { font-size: 0.75rem; }
+            .btn-cta { font-size: 0.9rem; padding: 14px; }
+            .current-price { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <span>O SEGREDO DA ATRAÇÃO NATURAL 🔓 VAGAS LIMITADAS</span>
+        <div class="timer">03 : 21 : 04</div>
+    </div>
+
+    <header>
+        <div class="logo">divinely<span>feminine</span></div>
+        <div class="nav-links">
+            <a href="#">Início</a><a href="#">Método</a><a href="#">Sobre</a><a href="#">Login</a>
+        </div>
+        <div class="header-icons"><i class="far fa-user"></i><i class="fas fa-shopping-bag"></i></div>
+    </header>
+
+    <div class="container">
+        <!-- Hero -->
+        <section class="product-hero">
+            <div class="product-image-wrapper">
+                <div class="book-cover">
+                    <div class="author">The Secret</div>
+                    <div class="lips"><i class="fas fa-gem"></i></div>
+                    <h2>THE<br>ATTRACTION<br><span style="color:var(--primary-red); font-style:italic; font-family:'Brush Script MT', cursive;">Code</span></h2>
+                </div>
+            </div>
+
+            <div class="product-details">
+                <h1>O Código da Atração – Torne-se irresistível</h1>
+                
+                <div class="rating text-center-mobile">
+                    <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></span>
+                    <span style="font-size: 0.85rem; color: #666; font-weight: 500;">(10.500+ Mulheres Transformadas)</span>
+                </div>
+                
+                <div class="price-container">
+                    <span class="current-price">R$ 104,61</span>
+                    <span class="old-price">R$ 275,75</span>
+                    <span class="save-badge">OFERTA ÚNICA</span>
+                </div>
+                
+                <ul class="features-check">
+                    <li><i class="far fa-check-circle"></i> Ative seu <strong>Magnetismo Pessoal Inabalável</strong></li>
+                    <li><i class="far fa-check-circle"></i> Tenha uma <strong>Presença que Preenche o Ambiente</strong></li>
+                    <li><i class="far fa-check-circle"></i> Desenvolva Confiança Silenciosa e Autêntica</li>
+                </ul>
+                
+                <!-- BOTÃO CTA 1 -->
+                <a href="SEU_LINK_DE_CHECKOUT_AQUI" class="btn-cta">QUERO DESCOBRIR O CÓDIGO</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Pain Section -->
+    <div class="pain-section-wrapper">
+        <div class="wave-divider wave-top">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="fill-blush"></path>
+            </svg>
+        </div>
+
+        <div class="container pain-section">
+            <h2>Cansada de passar despercebida ou sentir que falta "algo a mais"?</h2>
+            <p>A verdadeira atração não é sobre mudar quem você é, mas sobre potencializar seus pontos fortes naturais. O magnetismo real acontece quando sua autoconfiança e sua imagem estão perfeitamente alinhadas.</p>
+            <p>Pare de buscar validação externa. Aprenda a emitir uma frequência de alto valor que atrai olhares, respeito e oportunidades naturalmente, sem que você precise dizer uma única palavra.</p>
+        </div>
+        
+        <div class="wave-divider wave-bottom">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="fill-blush"></path>
+            </svg>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="comparison-section">
+            <div class="comparison-text">
+                <h2>Por que a autenticidade vence a perfeição</h2>
+                <p>Tentar ser perfeita gera distância e ansiedade. Ser autêntica gera conexão e admiração. O <em>Código da Atração</em> ensina a usar sua singularidade como sua maior vantagem competitiva.</p>
+                <p>É sobre alinhar sua postura, sua energia feminina e seus traços físicos de forma estratégica para se tornar inesquecível em qualquer ambiente.</p>
+            </div>
+            
+            <div class="comparison-table">
+                <div class="comp-header">
+                    <div></div><div class="brand-col">O Código da<br>Atração</div><div style="color:#888;">Padrão Comum</div>
+                </div>
+                <div class="comp-row">
+                    <div class="comp-feature">Magnetismo Natural e Fluido</div><div class="comp-check"><i class="fas fa-check"></i></div><div class="comp-cross"><i class="fas fa-times"></i></div>
+                </div>
+                <div class="comp-row">
+                    <div class="comp-feature">Confiança que Vem de Dentro</div><div class="comp-check"><i class="fas fa-check"></i></div><div class="comp-cross"><i class="fas fa-times"></i></div>
+                </div>
+                <div class="comp-row">
+                    <div class="comp-feature">Uso Estratégico da Imagem</div><div class="comp-check"><i class="fas fa-check"></i></div><div class="comp-cross"><i class="fas fa-times"></i></div>
+                </div>
+                <div class="comp-row">
+                    <div class="comp-feature">Presença de Alto Impacto</div><div class="comp-check"><i class="fas fa-check"></i></div><div class="comp-cross"><i class="fas fa-times"></i></div>
+                </div>
+            </div>
+        </section>
+
+        <div class="warning-wrapper">
+            <section class="warning-section">
+                <div class="warning-title">
+                    <span class="warning-icon"><i class="fas fa-exclamation-triangle"></i></span>Cuidado: O poder da visibilidade
+                </div>
+                <div class="warning-content">
+                    <strong>Este método remove a invisibilidade social. Você se tornará o foco.</strong>
+                    <p style="margin-top:10px;">O magnetismo pessoal traz consequências reais:</p>
+                    <ul>
+                        <li>Você atrairá atenção onde quer que vá, de forma natural.</li>
+                        <li>Esteja preparada para sustentar os olhares e a atenção que você vai atrair.</li>
+                    </ul>
+                    <p>Use esse poder para elevar sua vida pessoal e profissional.</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div class="experience-wrapper">
+        <div class="wave-divider wave-top">
+             <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="fill-white"></path>
+            </svg>
+        </div>
+
+        <div class="container experience-section">
+            <div class="exp-left">
+                <h2>O Que Você Vai Desenvolver</h2>
+                <ul class="exp-list">
+                    <li><span class="exp-icon">✨</span><div class="exp-text"><strong>Presença de Impacto:</strong> A capacidade de preencher o ambiente com sua energia e ser notada instantaneamente.</div></li>
+                    <li><span class="exp-icon">💃</span><div class="exp-text"><strong>Linguagem Corporal Magnética:</strong> Gestos e posturas que comunicam segurança, elegância e alto valor.</div></li>
+                    <li><span class="exp-icon">🛡️</span><div class="exp-text"><strong>Autoestima Blindada:</strong> Uma confiança interna que não depende de elogios externos para existir.</div></li>
+                    <li><span class="exp-icon">🌊</span><div class="exp-text"><strong>Energia Feminina Fluida:</strong> O equilíbrio perfeito entre suavidade e força que torna você única.</div></li>
+                </ul>
+            </div>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="circle-chart c-91"><div class="circle-inner">92%</div></div>
+                    <div class="stat-desc">sentiram um aumento imediato na autoconfiança e segurança</div>
+                </div>
+                <div class="stat-item">
+                    <div class="circle-chart c-89"><div class="circle-inner">89%</div></div>
+                    <div class="stat-desc">notaram que as pessoas as tratam com mais deferência e respeito</div>
+                </div>
+                <div class="stat-item">
+                    <div class="circle-chart c-95"><div class="circle-inner">95%</div></div>
+                    <div class="stat-desc">relataram abrir novas portas profissionais e sociais naturalmente</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="game-section">
+            <div class="game-text">
+                <h2>Pare de tentar se encaixar. Comece a brilhar.</h2>
+                <p>Quando você ativa seu código pessoal de atração, o esforço desaparece e o fluxo começa.</p>
+            </div>
+            <div class="ba-container">
+                <div class="ba-col ba-before">
+                    <div class="text-center"><span class="ba-header">Antes do Código</span></div>
+                    <div class="ba-list">
+                        <div>Insegura com a própria imagem <i class="fas fa-times-circle icon-cross"></i></div>
+                        <div>Sente-se uma fraude às vezes <i class="fas fa-times-circle icon-cross"></i></div>
+                        <div>Evita ser o centro das atenções <i class="fas fa-times-circle icon-cross"></i></div>
+                        <div>Busca aprovação alheia <i class="fas fa-times-circle icon-cross"></i></div>
+                    </div>
+                </div>
+                <div class="ba-col ba-after">
+                    <div class="text-center"><span class="ba-header">Depois do Código</span></div>
+                    <div class="ba-list">
+                        <div>Segura e confortável na pele <i class="fas fa-check-circle icon-check"></i></div>
+                        <div>Reconhece seu próprio valor <i class="fas fa-check-circle icon-check"></i></div>
+                        <div>Ocupa espaço com naturalidade <i class="fas fa-check-circle icon-check"></i></div>
+                        <div>Atrai validação sem pedir <i class="fas fa-check-circle icon-check"></i></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="guarantee-section">
+            <h2>Teste seu magnetismo por 30 dias.</h2>
+            <p>Se você aplicar os princípios e não sentir uma mudança profunda na sua autoimagem e na forma como o mundo reage a você, devolvemos 100% do seu dinheiro.</p>
+            <p>Sua transformação é nossa prioridade absoluta.</p>
+        </section>
+
+        <div class="testimonials-wrapper">
+            <div class="text-center" style="margin-bottom: 40px;">
+                <h2 style="font-size: 2rem;">Histórias de Transformação</h2>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <i class="fas fa-quote-right quote-icon"></i>
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <div class="review-title">Minha carreira mudou.</div>
+                    <div class="review-body">"Sempre fui competente, mas invisível. Depois que ajustei minha postura e energia, fui promovida e ouvida em reuniões como nunca antes."</div>
+                    <div class="review-author">Carla R.</div>
+                </div>
+                <div class="review-card">
+                    <i class="fas fa-quote-right quote-icon"></i>
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <div class="review-title">Me sinto radiante.</div>
+                    <div class="review-body">"Não mudei meu corpo, mudei como me vejo. E incrível como as pessoas reagem diferente. Recebo elogios e sorrisos por onde passo."</div>
+                    <div class="review-author">Beatriz M.</div>
+                </div>
+                <div class="review-card">
+                    <i class="fas fa-quote-right quote-icon"></i>
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <div class="review-title">Não passo mais despercebida.</div>
+                    <div class="review-body">"Aprendi a usar meus traços a meu favor. A confiança que sinto agora é silenciosa, mas todo mundo nota. Me sinto poderosa."</div>
+                    <div class="review-author">Larissa S.</div>
+                </div>
+            </div>
+            <div class="text-center">
+                <!-- BOTÃO CTA 2 -->
+                <a href="SEU_LINK_DE_CHECKOUT_AQUI" class="btn-cta" style="max-width: 500px; margin: 0 auto;">QUERO DESCOBRIR O CÓDIGO</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-wrapper">
+        <div class="footer-wave">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none" style="width: 100%; height: 70px; display: block;">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="fill-dark" transform="rotate(180, 600, 60)"></path>
+            </svg>
+        </div>
+        <footer>
+            <p>&copy; 2024 Divinely Feminine. Todos os direitos reservados.</p>
+            <p style="margin-top: 10px; color: #555;">Termos de Serviço | Política de Privacidade</p>
+        </footer>
+    </div>
+
+</body>
+</html>
