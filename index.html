@@ -301,7 +301,7 @@
             <div class="loading-content">
                 <div class="spinner"></div>
                 <div class="loading-text">Analisando suas respostas...</div>
-                <p class="loading-sub">Cruzando seu perfil com padrões de alta performance.</p>
+                <p class="loading-sub">Nossa IA está cruzando seu perfil com padrões de alta performance.</p>
                 
                 <div id="checkList">
                     <div class="check-item" id="chk1"><i class="fas fa-check-circle"></i> Mapeando gatilhos de escassez...</div>
@@ -413,6 +413,9 @@
         function switchScreen(screenName) {
             Object.values(screens).forEach(s => s.classList.remove('active'));
             screens[screenName].classList.add('active');
+            
+            // Scroll para o topo sempre que a tela muda
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function startQuiz() {
@@ -445,11 +448,14 @@
                 currentQuestion++;
                 // Pequeno delay para feedback visual
                 setTimeout(() => {
+                    // SCROLL AUTOMÁTICO PARA O TOPO
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                     loadQuestion();
                 }, 200);
             } else {
                 ui.bar.style.width = '100%';
                 setTimeout(() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                     finishQuiz();
                 }, 200);
             }
